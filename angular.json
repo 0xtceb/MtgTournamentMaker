@@ -3,7 +3,7 @@
   "version": 1,
   "newProjectRoot": "projects",
   "projects": {
-    "tournamentMaker": {
+    "mtgtm": {
       "projectType": "application",
       "schematics": {
         "@schematics/angular:component": {
@@ -17,14 +17,17 @@
         "build": {
           "builder": "@angular-devkit/build-angular:browser",
           "options": {
-            "outputPath": "dist/tournament-maker",
+            "outputPath": "dist/mtgtc",
             "index": "src/index.html",
             "main": "src/main.ts",
             "polyfills": ["zone.js"],
             "tsConfig": "tsconfig.app.json",
             "inlineStyleLanguage": "scss",
             "assets": ["src/favicon.ico", "src/assets"],
-            "styles": ["src/styles.scss"],
+            "styles": [
+              "@angular/material/prebuilt-themes/deeppurple-amber.css",
+              "src/styles.scss"
+            ],
             "scripts": []
           },
           "configurations": {
@@ -58,10 +61,10 @@
           "builder": "@angular-devkit/build-angular:dev-server",
           "configurations": {
             "production": {
-              "buildTarget": "tournamentMaker:build:production"
+              "buildTarget": "mtgtm:build:production"
             },
             "development": {
-              "buildTarget": "tournamentMaker:build:development"
+              "buildTarget": "mtgtm:build:development"
             }
           },
           "defaultConfiguration": "development"
@@ -69,7 +72,7 @@
         "extract-i18n": {
           "builder": "@angular-devkit/build-angular:extract-i18n",
           "options": {
-            "buildTarget": "tournamentMaker:build"
+            "buildTarget": "mtgtm:build"
           }
         },
         "test": {
@@ -82,6 +85,23 @@
             "styles": ["src/styles.scss"],
             "scripts": []
           }
+        },
+        "deploy": {
+          "builder": "@angular/fire:deploy",
+          "options": {
+            "version": 2
+          },
+          "configurations": {
+            "production": {
+              "buildTarget": "mtgtm:build:production",
+              "serveTarget": "mtgtm:serve:production"
+            },
+            "development": {
+              "buildTarget": "mtgtm:build:development",
+              "serveTarget": "mtgtm:serve:development"
+            }
+          },
+          "defaultConfiguration": "production"
         }
       }
     }

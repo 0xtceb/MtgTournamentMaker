@@ -1,0 +1,14 @@
+{
+  "targets": {
+    "mtgtm-4afdc": {
+      "hosting": {
+        "mtgtm": [
+          "mtgtm-4afdc"
+        ]
+      }
+    }
+  },
+  "projects": {
+    "default": "mtgtm-4afdc"
+  }
+}
